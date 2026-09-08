@@ -1,0 +1,273 @@
+:root {
+  /* Studio Size & Creative Dev Design Tokens (Scene.mp4 Benchmark) */
+  --bg-outer: #f4f4f5;              /* Light Clean Bezel Canvas */
+  --bg-black: #080808;              /* Pure Cinematic Deep Black */
+  --bg-card: #111113;               /* Elevated Dark Surface */
+  --bg-card-hover: #18181b;
+  --bg-pill: #222226;
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.16);
+  --border-active: rgba(255, 255, 255, 0.6);
+  
+  /* Monochrome Minimal High Contrast */
+  --text-pure: #ffffff;
+  --text-muted: #a1a1aa;
+  --text-dimmed: #52525b;
+  --text-faint: #27272a;
+  
+  /* Accents */
+  --accent-white: #ffffff;
+  --accent-glow: rgba(255, 255, 255, 0.15);
+  --accent-red: #ef4444;
+  --accent-live: #22c55e;
+  
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-frame: 32px;
+  --radius-full: 9999px;
+  
+  --shadow-frame: 0 30px 80px -15px rgba(0, 0, 0, 0.35);
+  --shadow-floating: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-outer);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-outer);
+  color: var(--text-pure);
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding: 14px 14px 40px;
+}
+
+body.is-admin-mode {
+  background-color: #080808 !important;
+  padding: 0 !important;
+  color: #f4f4f5 !important;
+}
+
+::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Master Studio Viewport Card (Scene.mp4 Frame 00:00 - 00:08) */
+.studio-canvas {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--bg-black);
+  border-radius: var(--radius-frame);
+  overflow: hidden;
+  box-shadow: var(--shadow-frame);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+/* Circular Icon Buttons (Scene.mp4 Frame 00:04, 00:05, 00:07) */
+.circle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-light);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.circle-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: scale(1.08);
+  border-color: #ffffff;
+}
+
+.circle-btn-solid {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.circle-btn-solid:hover {
+  background: #e4e4e7;
+  transform: scale(1.08);
+}
+
+/* Floating Pill Button */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-light);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* Interactive Floating Player Pill (Scene.mp4 Frame 00:07) */
+.floating-player-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(18, 18, 20, 0.88);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  padding: 8px 16px 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.floating-player-dock:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* Animations */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.anim-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+}
+
+.anim-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+.anim-float {
+  animation: float-subtle 6s ease-in-out infinite;
+}
+
+/* Scroll-Triggered Reveal Transitions */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-init.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale-init {
+  opacity: 0;
+  transform: scale(0.96) translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale-init.is-revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Stagger Delays */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+
+@media (max-width: 768px) {
+  body {
+    padding: 6px 6px 30px;
+  }
+  .studio-canvas {
+    border-radius: 20px;
+  }
+  .studio-container {
+    padding: 0 20px;
+  }
+}
+
