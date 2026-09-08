@@ -154,18 +154,20 @@ func createTables(db *sql.DB) error {
 }
 
 func seedInitialData(db *sql.DB) error {
-	// 1. Seed Admin User
+	// 1. Seed or Update Admin User
 	var userCount int
 	err := db.QueryRow("SELECT COUNT(*) FROM users").Scan(&userCount)
+	hashed, _ := bcrypt.GenerateFromPassword([]byte("admin123"), bcrypt.DefaultCost)
 	if err == nil && userCount == 0 {
-		hashed, _ := bcrypt.GenerateFromPassword([]byte("vadikara2026!"), bcrypt.DefaultCost)
 		_, err = db.Exec(`INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)`,
 			"vadikara", "admin@vadikara.com", string(hashed), "superadmin")
 		if err != nil {
 			log.Printf("Failed to seed admin: %v", err)
 		} else {
-			log.Printf("Admin user created: admin@vadikara.com / vadikara2026!")
+			log.Printf("Admin user created: admin@vadikara.com")
 		}
+	} else {
+		_, _ = db.Exec(`UPDATE users SET password_hash = ? WHERE email = ?`, string(hashed), "admin@vadikara.com")
 	}
 
 	// 2. Seed Profile

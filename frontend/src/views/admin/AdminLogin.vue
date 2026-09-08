@@ -31,7 +31,7 @@
               v-model="email" 
               type="email" 
               class="form-input mono" 
-              placeholder="admin@vadikara.com" 
+              placeholder="nama@email.com" 
               autocomplete="email"
               required 
             />
@@ -61,17 +61,6 @@
           </div>
         </div>
 
-        <!-- Quick Fill Helper Card -->
-        <div class="credential-helper" @click="fillDefaultCredentials" title="Klik untuk mengisi otomatis">
-          <div class="helper-top">
-            <span class="helper-label mono">KREDENSIAL DEFAULT SISTEM</span>
-            <span class="helper-action mono">KLIK UNTUK ISI ⚡</span>
-          </div>
-          <div class="helper-values mono">
-            <code>admin@vadikara.com</code> &bull; <code>vadikara2026!</code>
-          </div>
-        </div>
-
         <button type="submit" class="btn btn-primary btn-submit mono" :disabled="loading">
           <span v-if="loading">Memverifikasi Otorisasi...</span>
           <span v-else>Masuk ke Portal CMS &rarr;</span>
@@ -93,16 +82,11 @@ import { useRouter } from 'vue-router'
 import { api } from '../../services/api'
 
 const router = useRouter()
-const email = ref('admin@vadikara.com')
-const password = ref('vadikara2026!')
+const email = ref('')
+const password = ref('')
 const showPassword = ref(false)
 const loading = ref(false)
 const errorMsg = ref('')
-
-const fillDefaultCredentials = () => {
-  email.value = 'admin@vadikara.com'
-  password.value = 'vadikara2026!'
-}
 
 const handleLogin = async () => {
   loading.value = true
@@ -276,55 +260,6 @@ const handleLogin = async () => {
   cursor: pointer;
   padding: 4px;
   font-size: 1rem;
-}
-
-.credential-helper {
-  background: rgba(0, 242, 254, 0.04);
-  border: 1px dashed rgba(0, 242, 254, 0.25);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.credential-helper:hover {
-  background: rgba(0, 242, 254, 0.08);
-  border-color: rgba(0, 242, 254, 0.5);
-  transform: translateY(-1px);
-}
-
-.helper-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.helper-label {
-  font-size: 0.65rem;
-  color: #71717a;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
-.helper-action {
-  font-size: 0.65rem;
-  color: #00f2fe;
-  font-weight: 700;
-}
-
-.helper-values {
-  font-size: 0.74rem;
-  color: #e4e4e7;
-}
-
-.helper-values code {
-  color: #00f2fe;
-  background: rgba(0, 242, 254, 0.1);
-  padding: 2px 6px;
-  border-radius: 4px;
 }
 
 .btn-submit {

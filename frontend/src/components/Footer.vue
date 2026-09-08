@@ -25,7 +25,6 @@
               <li v-for="(s, idx) in footerSocialLinks" :key="idx">
                 <a :href="s.url" target="_blank" rel="noopener">{{ s.label }}</a>
               </li>
-              <li><router-link to="/admin" class="mono text-dim">CMS Admin &nearr;</router-link></li>
             </ul>
           </div>
         </div>
